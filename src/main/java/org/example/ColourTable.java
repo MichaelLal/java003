@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ColourTable {
@@ -27,8 +28,19 @@ public class ColourTable {
         palette.add(rgbColor);
     }
 
+    public void remove(int rgbColor) {
+        Iterator<Integer> iterator = palette.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next() == rgbColor) {
+                iterator.remove();
+                return;
+            }
+        }
+        throw new IllegalArgumentException("Color not found in the palette");
+    }
+
     private boolean isValidPaletteSize(int size) {
-        return size > 1 && size <= MAX_SIZE && (size & (size - 1)) == 0; // Check if power of two
+        return size > 0 && size <= MAX_SIZE && (size & (size - 1)) == 0; // Check if power of two
     }
 
     public List<Integer> getPalette() {
