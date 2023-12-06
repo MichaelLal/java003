@@ -34,6 +34,13 @@ class ColourTableTest {
         assertEquals(0x0000FF, palette.get(2).intValue());
         assertEquals(0xFFFFFF, palette.get(3).intValue());
     }
+    @Test
+    void testInvalidRGBColor() {
+        ColourTable colourTable = new ColourTable(4);
+
+        // Attempt to add an invalid RGB color (negative value)
+        assertThrows(IllegalArgumentException.class, () -> colourTable.add(-1));
+    }
 
     @Test
     void testExceedCapacity() {
