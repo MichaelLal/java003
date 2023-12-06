@@ -18,6 +18,12 @@ public class ColourTable {
         if (palette.size() >= MAX_SIZE) {
             throw new IllegalStateException("Exceeded maximum capacity of the ColourTable");
         }
+
+        // Check if the RGB color is valid (non-negative)
+        if (rgbColor < 0) {
+            throw new IllegalArgumentException("Invalid RGB color value");
+        }
+
         palette.add(rgbColor);
     }
 
